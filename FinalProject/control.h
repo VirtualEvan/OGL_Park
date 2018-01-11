@@ -43,5 +43,4 @@ void CallbackInit(void);
 
 /* Define las acciones tras una pulsacion del teclado */
 void Keyboard(unsigned char tecla, int x, int y);
-
 #endif

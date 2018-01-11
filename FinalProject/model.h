@@ -24,4 +24,10 @@ void LongTree(void);
 
 void Tree(void);
 
+void Fountain(void);
+
+void Tile(int texture);
+
+void Floor();
+
 #endif

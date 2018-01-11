@@ -13,6 +13,7 @@
 #include "glig.h"
 #include "light.h"
 #include "material.h"
+#include "model.h"
 
 /******************************************************************************************/
 /* Establece el area visible y el tipo de proyeccion                                      */
@@ -199,11 +200,7 @@ void Draw(void)
 	gluLookAt(ox, oy, oz, ix, iy, iz, 0, 1, 0);
 
 	/* Llamadas a las display lists */
-	//StreetLight();
-	//Bench();
-	Bench();
-	//igWireSphere(10, 10);
-
+	glCallList(scene);
 
 	/* Utiliza la funcion de la glut que intercambia los buffers */
 	glutSwapBuffers();
@@ -235,6 +232,7 @@ void OpenGLInit(void)
 
 	/* Textures */
 	glEnable(GL_TEXTURE_2D);
+
 }
 
 
@@ -260,11 +258,20 @@ int main(int numArgumentos, char ** listaArgumentos)
 	CallbackInit();
 
 	/* Init textures */
-	//initTextureWithIndex("grass.tga", 0);
-	//initTextureWithIndex("grass.jpg", 0);
+	//initTextura();
+	initTextureWithIndex("grass.tga", 0);
+	initTextureWithIndex("concrete.tga", 1);
+	initTextureWithIndex("tree1.tga", 2);
+	initTextureWithIndex("tree2.tga", 3);
+	initTextureWithIndex("pine.tga", 4);
+	initTextureWithIndex("leaf1.tga", 5);
+	initTextureWithIndex("concrete.tga", 6);
+	initTextureWithIndex("wood.tga", 7);
+	initTextureWithIndex("metal.tga", 8);
+	initTextureWithIndex("concrete.tga", 9);
 
 	/* Creo la display list de la escena */
-
+	InitScene();
 	printf("Modo = WALK\r");
 
 	/* A la espera de eventos.... */

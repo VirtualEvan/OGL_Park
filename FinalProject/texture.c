@@ -12,7 +12,7 @@
 #include "texture.h"
 
 
-void leerTextura (char *fichero)
+void leerTextura(char *fichero)
 {
 	int   i, j;
 	char  r, g, b, c;
@@ -20,19 +20,19 @@ void leerTextura (char *fichero)
 
 	/* Apertura del fichero TGA */
 	if ((tga = fopen(fichero, "rb")) == NULL)
-		printf ("Error abriendo el fichero: %s\n", fichero);
+		printf("Error abriendo el fichero: %s\n", fichero);
 	else
 	{
 		/* Lee los 18 primeros caracteres de la cabecera */
-		for (j=1; j<=18; j++)
-			fscanf (tga, "%c", &c);
+		for (j = 1; j <= 18; j++)
+			fscanf(tga, "%c", &c);
 
 		/* Lee la imagen */
-		for (j=altoTextura-1; j>=0; j--)
+		for (j = altoTextura - 1; j >= 0; j--)
 		{
-			for (i=anchoTextura-1; i>=0; i--)
+			for (i = anchoTextura - 1; i >= 0; i--)
 			{
-				fscanf(tga, "%c%c%c", &b, &g, &r); 
+				fscanf(tga, "%c%c%c", &b, &g, &r);
 				texturaInfo[j][i][0] = (GLubyte)r;
 				texturaInfo[j][i][1] = (GLubyte)g;
 				texturaInfo[j][i][2] = (GLubyte)b;
@@ -48,8 +48,7 @@ void initTextura()
 {
 
 	// 4..... TODO 04 ............ READ INFO FROM TGA FILE.............4
-	//leerTextura("grass.jpg");
-	leerTextura("grass.tga");
+	leerTextura("grass.jpg");
 
 	// 5..... TODO 05 ............ CREATE NEW TEXTURE FROM IMAGE FILE INFO  ..........5
 	glTexImage2D(GL_TEXTURE_2D, 0, 3, anchoTextura, altoTextura, 0, GL_RGB, GL_UNSIGNED_BYTE, texturaInfo);
@@ -57,12 +56,12 @@ void initTextura()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	/*
-	 * WE MUST INDICATE THE CORRESPONDENCE BETWEEN TEXTURE COORDINATES AND THE VERTICES OF THE SURFACE WE WANT TO TEXTURE
-	 * IF THE TEXTURE COORDINATES ARE OUT OF RANGE [0 - 1] THE TEXTURE CAN BE:
-	 * + REPEATED : GL_REPEAT
-	 * + STRETCHED: GL_CLAMP
-	 */
-	
+	* WE MUST INDICATE THE CORRESPONDENCE BETWEEN TEXTURE COORDINATES AND THE VERTICES OF THE SURFACE WE WANT TO TEXTURE
+	* IF THE TEXTURE COORDINATES ARE OUT OF RANGE [0 - 1] THE TEXTURE CAN BE:
+	* + REPEATED : GL_REPEAT
+	* + STRETCHED: GL_CLAMP
+	*/
+
 	// 7..... TODO 07 ............... TEXTURE FILTER ..................................7
 
 	/*
@@ -71,8 +70,8 @@ void initTextura()
 	* USES A MINIFICATION FILTER (GL_TEXTURE_MIN_FILTER); WHEN THE SURFACE IS BUGGER THAN THE TEXTURE, OPENGL USES
 	* A MAGNIFICATION FILTER. THERE ARE SEVERAL TYPES OF FILTERS LIKE:
 	*    + GL_LINEAR: SMOOTHS THE IMAGE
-	*    + GL_NEAREST: 16-BITS GAME STYLE 
-	*/	
+	*    + GL_NEAREST: 16-BITS GAME STYLE
+	*/
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 }

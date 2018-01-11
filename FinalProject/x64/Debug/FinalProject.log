@@ -1,0 +1,13 @@
+﻿  texture.c
+d:\esei\master\celso\ogl_park\finalproject\texture.c(134): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+  model.c
+d:\esei\master\celso\ogl_park\finalproject\model.c(235): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+  material.c
+d:\esei\master\celso\ogl_park\finalproject\material.c(42): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+  light.c
+d:\esei\master\celso\ogl_park\finalproject\light.c(88): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+  glig.c
+d:\esei\master\celso\ogl_park\finalproject\glig.c(510): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+  control.c
+d:\esei\master\celso\ogl_park\finalproject\control.c(275): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+  Generating Code...
