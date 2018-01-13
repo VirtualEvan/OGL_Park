@@ -22,8 +22,8 @@ void InitScene(void)
 	{
 		glNewList(scene, GL_COMPILE);
 
-		Fountain();
-		//Ring(1.0, 2.0, 2.0, 4.0, 5.0, 80);
+		LongTree();
+		
 
 		glEndList();
 	}
@@ -37,11 +37,11 @@ void Test() {
 	Cylinder = gluNewQuadric(); // Create our new quadric object
 	gluQuadricDrawStyle(Cylinder, GLU_FILL); //FILL also can be line(wire)
 	gluQuadricNormals(Cylinder, GLU_SMOOTH); // For if lighting is to be used.
-	gluQuadricOrientation(Cylinder, GLU_OUTSIDE);
+	gluQuadricOrientation(Cylinder, GLU_INSIDE);
 	gluQuadricTexture(Cylinder, GL_TRUE);// if you want to map a texture to it.
 
-										 // Draw 
-	gluCylinder(Cylinder, 1, 2, 3, 5, 5);
+	applyTexture(5);					 // Draw 
+	gluSphere(Cylinder, 0.8, 80, 80);
 	gluDeleteQuadric(Cylinder);
 
 }
@@ -157,10 +157,13 @@ void Fountain() {
 
 void StreetLight (void)
 {
+	applyTexture(8);
 	glPushMatrix();
+		glTranslatef(0.0, 1.35, 0.0);
 		glScalef(0.05,1.5,0.05);
-		igSolidCylinder(10,5);
+		Cylinder(1.0, 1.0, 3.0, 80);
 	glPopMatrix();
+
 
 	glPushMatrix();
 		glTranslatef(0.0, 1.6, 0.0);
@@ -278,38 +281,43 @@ void Bench(void)
 void PineTree()
 {
 	// Hojas
+	applyTexture(5);
 	glPushMatrix();
+		glTranslatef(0.0, 1.04, 0.0);
 		glScalef(0.8, 0.8, 0.8);
 		glScalef(0.8, 1, 0.8);
-		igSolidCone(80, 80);
+		Cylinder(0.0, 0.9, 1.3, 80);
 
 		glTranslatef(0.0, 0.5, 0.0);
 		glScalef(0.8, 1, 0.8);
-		igSolidCone(80, 80);
+		//igSolidCone(80, 80);
+		Cylinder(0.0, 0.9, 1.3, 80);
 
 		glTranslatef(0.0, 0.5, 0.0);
 		glScalef(0.8, 1, 0.8);
-		igSolidCone(80, 80);
+		//igSolidCone(80, 80);
+		Cylinder(0.0, 0.9, 1.3, 80);
 
 		glTranslatef(0.0, 0.5, 0.0);
 		glScalef(0.8, 1, 0.8);
-		igSolidCone(80, 80);
+		//igSolidCone(80, 80);
+		Cylinder(0.0, 0.9, 1.3, 80);
 
 		glTranslatef(0.0, 0.5, 0.0);
 		glScalef(0.8, 1, 0.8);
-		igSolidCone(80, 80);
+		//igSolidCone(80, 80);
+		Cylinder(0.0, 0.9, 1.3, 80);
 
 		glScalef(0.6, 1, 0.6);
-		igSolidCone(80, 80);
-
+		//igSolidCone(80, 80);
+		Cylinder(0.0, 0.9, 1.3, 80);
 	glPopMatrix();
 
 	// Tronco
 	applyTexture(4);
 	glPushMatrix();
-		glTranslatef(0.0, -0.3, 0.0);
 		glScalef(0.08, 0.3, 0.08);
-		igSolidCylinder(80, 80);
+		Cylinder(1.0, 1.0, 2.5, 80);
 	glPopMatrix();
 
 }
@@ -318,17 +326,18 @@ void LongTree() {
 	applyTexture(5);
 	//Hojas
 	glPushMatrix();
-		glTranslatef(0.0, 0.5, 0.0);
-		glScalef(0.5, 1, 0.5);
-		igSolidSphere(80, 80);
+		glTranslatef(0.0, 0.53, 0.0);
+		glScalef(0.5, 1.3, 0.5);
+		glRotatef(90, 1.0, 0.0, 0.0);
+		Sphere(0.8, 80, 1);
 	glPopMatrix();
 
 	applyTexture(3);
 	// Tronco
 	glPushMatrix();
-		glTranslatef(0.0, -0.77, 0.0);
+		glTranslatef(0.0, -0.49, 0.0);
 		glScalef(0.08, 0.3, 0.08);
-		igSolidCylinder(80, 80);
+		Cylinder(1.0, 1.0, 2.0, 80);
 	glPopMatrix();
 }
 
@@ -338,15 +347,15 @@ void Tree()
 	//Hojas
 	glPushMatrix();
 		glTranslatef(0.0, 0.5, 0.0);
-		glScalef(0.8, 0.8, 0.8);
-		igSolidSphere(80, 80);
+		glRotatef(90, 1.0, 0.0, 0.0);
+		Sphere(0.8, 80, 1);
 	glPopMatrix();
 
 	applyTexture(2);
 	// Tronco
 	glPushMatrix();
-		glTranslatef(0.0, -0.77, 0.0);
+		glTranslatef(0.0, -0.3, 0.0);
 		glScalef(0.08, 0.48, 0.08);
-		igSolidCylinder(80, 80);
+		Cylinder(1.0, 1.0, 3.0, 80);
 	glPopMatrix();
 }

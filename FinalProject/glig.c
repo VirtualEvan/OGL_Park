@@ -425,6 +425,8 @@ void Cylinder(float rad1, float rad2, float height, int slices) {
 	gluQuadricOrientation(quad, GLU_INSIDE);
 	gluQuadricTexture(quad, GL_TRUE);// if you want to map a texture to it.
 
+	glPushMatrix();
+
 	glRotatef(90, 1.0, 0.0, 0.0);
 	// Draw 
 	glPushMatrix();
@@ -442,10 +444,12 @@ void Cylinder(float rad1, float rad2, float height, int slices) {
 		gluDisk(quad, 0.0, rad1, slices, 1);
 	glPopMatrix();
 
+	glPopMatrix();
+
 	gluDeleteQuadric(quad);
 }
 
-void Ring(float inner1, float outter1, float inner2, float outter2, float height, int slices, float closed) {
+void Ring(float inner1, float outter1, float inner2, float outter2, float height, int slices, int closed) {
 	GLUquadricObj *quad; // Create pointer for our cylinder
 
 	quad = gluNewQuadric(); // Create our new quadric object
@@ -455,6 +459,8 @@ void Ring(float inner1, float outter1, float inner2, float outter2, float height
 	gluQuadricTexture(quad, GL_TRUE);// if you want to map a texture to it.
 
 	// Draw 
+	glPushMatrix();
+
 	glRotatef(90, 1.0, 0.0, 0.0);
 	// Side 1
 	glPushMatrix();
@@ -476,26 +482,34 @@ void Ring(float inner1, float outter1, float inner2, float outter2, float height
 
 		gluDisk(quad, inner1, outter1, slices, 1);
 	glPopMatrix();
+
+	glPopMatrix();
 	gluDeleteQuadric(quad);
 }
 
 
 
 /* Create the field */
-void CreateField()
+void Sphere(float radio, int slices_stacks, int orientation)
 {
-	glBegin(GL_QUADS);
-		glNormal3f(0.f, 1.f, 0.f);
-		glTexCoord2d(0, 0);
-		glVertex3f(-100.f, -50.f, -1000.f);
-		glTexCoord2d(-1, 0);
-		glVertex3f(100.f, -50.f, -1000.f);
-		glTexCoord2d(-1, -1);
-		glVertex3f(100.f, -50.f, 0.f);
-		glTexCoord2d(0, -1);
-		glVertex3f(-100.f, -50.f, 0.f);
-		glEnd();
+	GLUquadricObj *quad; // Create pointer for our cylinder
+
+	quad = gluNewQuadric(); // Create our new quadric object
+	gluQuadricDrawStyle(quad, GLU_FILL); //FILL also can be line(wire)
+	gluQuadricNormals(quad, GLU_SMOOTH); // For if lighting is to be used.
+	if (orientation) {
+		gluQuadricOrientation(quad, GLU_INSIDE);
+	}
+	else {
+		gluQuadricOrientation(quad, GLU_OUTSIDE);
+	}
+	gluQuadricTexture(quad, GL_TRUE);// if you want to map a texture to it.
+
+	glPushMatrix();
+		gluSphere(quad, radio, slices_stacks, slices_stacks);
 	glPopMatrix();
+
+	gluDeleteQuadric(quad);
 }
 
 
