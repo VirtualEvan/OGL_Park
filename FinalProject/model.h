@@ -12,7 +12,7 @@
 GLuint scene;
 
 /* Crea la display list para la escena */
-void CreateLightScene (void);
+void InitScene (void);
 
 void StreetLight(void);
 
@@ -28,6 +28,8 @@ void Fountain(void);
 
 void Tile(int texture);
 
-void Floor();
+void Floor(void);
+
+void Test(void);
 
 #endif

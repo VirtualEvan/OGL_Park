@@ -9,7 +9,6 @@
 
 #include "glut.h"
 #include "glig.h"
-#include "material.h"
 #include "model.h"
 
 
@@ -22,35 +21,42 @@ void InitScene(void)
 	if (scene != 0)
 	{
 		glNewList(scene, GL_COMPILE);
-		/*
-			glPushMatrix();
-				//igSolidCube();
-				glTranslatef(1.f, 0.f, 0.f);
-				glScalef(0.7f, 0.7f, 0.7f);
-				glRotatef(90, 0.0, 0.5, 0.5);
-				igSolidCylinder(80, 80);
-				//Floor(1);
-			glPopMatrix();
-			glPushMatrix();
-				//igSolidCube();
-				glTranslatef(-1.f, 0.f, 0.f);
-				glScalef(0.7f, 0.7f, 0.7f);
-				glRotatef(90, 0.0, 0.5, -0.5);
-				igSolidCylinder(80,80);
-				//Floor(1);
-			glPopMatrix();
-		*/
-		Floor();
+
+		Fountain();
+		//Ring(1.0, 2.0, 2.0, 4.0, 5.0, 80);
+
 		glEndList();
 	}
 }
 
 /********************* MODELS ****************/
 
+void Test() {
+	GLUquadricObj *Cylinder; // Create pointer for our cylinder
+
+	Cylinder = gluNewQuadric(); // Create our new quadric object
+	gluQuadricDrawStyle(Cylinder, GLU_FILL); //FILL also can be line(wire)
+	gluQuadricNormals(Cylinder, GLU_SMOOTH); // For if lighting is to be used.
+	gluQuadricOrientation(Cylinder, GLU_OUTSIDE);
+	gluQuadricTexture(Cylinder, GL_TRUE);// if you want to map a texture to it.
+
+										 // Draw 
+	gluCylinder(Cylinder, 1, 2, 3, 5, 5);
+	gluDeleteQuadric(Cylinder);
+
+}
+
+
 void Floor() {
 	applyTexture(1);
+
 	GLUquadric* quad = gluNewQuadric();
-	gluCylinder(quad,4,4,15,80,80);
+	gluQuadricDrawStyle(quad, GLU_FILL); //FILL also can be line(wire)
+	gluQuadricNormals(quad, GLU_SMOOTH); // For if lighting is to be used.
+	gluQuadricOrientation(quad, GLU_INSIDE);
+	gluQuadricTexture(quad, GL_TRUE);// if you want to map a texture to it.
+
+	gluDisk(quad,0,2,80,80);
 	gluDeleteQuadric(quad);
 }
 
@@ -78,60 +84,74 @@ void Fountain() {
 	glScalef(0.5, 0.5, 0.5);
 
 	glPushMatrix();
-	glTranslatef(0.0, 1.67, 0.0);
-	glScalef(0.05, 0.02, 0.05);
-	igSolidCylinder(80, 80);
+		glTranslatef(0.0, 1.75, 0.0);
+		Ring(0.01, 0.03, 0.03, 0.05, 0.1, 80, 0);
 	glPopMatrix();
 
 	glPushMatrix();
-	glTranslatef(0.0, 1.45, 0.0);
-	glScalef(0.2, 0.2, 0.2);
-	igSolidSemiSphere(80, 80);
+		glTranslatef(0.0, 1.45, 0.0);
+		glScalef(0.2, 0.2, 0.2);
+		igSolidSemiSphere(80, 80);
+	glPopMatrix();
+
+	applyTexture(9);
+	glPushMatrix();
+		glTranslatef(0.0, 1.42, 0.0);
+		glScalef(3.0, 0.3, 3.0);
+		Cylinder(0.585, 0.585, 0.25, 80);
+	glPopMatrix();
+
+	applyTexture(6);
+	glPushMatrix();
+		glTranslatef(0.0, 1.42, 0.0);
+		glScalef(3.0, 1.0, 3.0);
+		Ring(0.585, 0.6, 0.585, 0.6, 0.25, 80, 1);
 	glPopMatrix();
 
 	glPushMatrix();
-	glTranslatef(0.0, 1.35, 0.0);
-	glScalef(1.3, 0.1, 1.3);
-	igSolidCylinder(80, 80);
+		glTranslatef(0.0, 1.07, 0.0);
+		glScalef(0.3, 0.3, 0.3);
+		glRotatef(180, 1.0, 0.0, 0.0);
+		igCreateSolidQuadricObject(80, 80, 1.0, 0.7, 1.0, 1.0, 1.0);
 	glPopMatrix();
 
 	glPushMatrix();
-	glTranslatef(0.0, 1.07, 0.0);
-	glScalef(0.3, 0.3, 0.3);
-	glRotatef(180, 1.0, 0.0, 0.0);
-	igCreateSolidQuadricObject(80, 80, 1.0, 0.7, 1.0, 1.0, 1.0);
+		glScalef(0.35, 0.15, 0.35);
+		glTranslatef(0.0, 5.0, 0.0);
+		glRotatef(180, 1.0, 0.0, 0.0);
+		igCreateSolidQuadricObject(80, 80, 1.0, 0.81, 1.0, 2.0, 1.0);
 	glPopMatrix();
 
 	glPushMatrix();
-	glScalef(0.35, 0.15, 0.35);
-	glTranslatef(0.0, 5.0, 0.0);
-	glRotatef(180, 1.0, 0.0, 0.0);
-	igCreateSolidQuadricObject(80, 80, 1.0, 0.81, 1.0, 2.0, 1.0);
+		glScalef(0.3, 0.3, 0.3);
+		glTranslatef(0.0, 2, 0.0);
+		glRotatef(180, 1.0, 0.0, 0.0);
+		igCreateSolidQuadricObject(80, 80, 1.0, 0.75, 1.0, 2.0, 1.0);
 	glPopMatrix();
 
 	glPushMatrix();
-	glScalef(0.3, 0.3, 0.3);
-	glTranslatef(0.0, 2, 0.0);
-	glRotatef(180, 1.0, 0.0, 0.0);
-	igCreateSolidQuadricObject(80, 80, 1.0, 0.75, 1.0, 2.0, 1.0);
+		glTranslatef(0.0, 0.45, 0.0);
+		Cylinder(0.15, 0.15, 0.1, 80);
 	glPopMatrix();
 
 	glPushMatrix();
-	glTranslatef(0.0, 0.38, 0.0);
-	glScalef(0.15, 0.08, 0.15);
-	igSolidCylinder(80, 80);
+		glTranslatef(0.0, -0.1, 0.0);
+		glScalef(0.5, 0.5, 0.5);
+		igCreateSolidQuadricObject(80, 80, 1.0, 0.8, 1.0, 1.0, 1.0);
+	glPopMatrix();
+	
+	applyTexture(9);
+	glPushMatrix();
+		glTranslatef(0.0, -0.55, 0.0);
+		glScalef(3.0, 0.3, 3.0);
+		Cylinder(1.0, 1.0, 0.4, 80);
 	glPopMatrix();
 
+	applyTexture(6);
 	glPushMatrix();
-	glTranslatef(0.0, -0.1, 0.0);
-	glScalef(0.5, 0.5, 0.5);
-	igCreateSolidQuadricObject(80, 80, 1.0, 0.8, 1.0, 1.0, 1.0);
-	glPopMatrix();
-
-	glPushMatrix();
-	glTranslatef(0.0, -0.7, 0.0);
-	glScalef(3.0, 0.25, 3.0);
-	igSolidCylinder(80, 80);
+		glTranslatef(0.0, -0.5, 0.0);
+		glScalef(3.0, 1.0, 3.0);
+		Ring(1.0, 1.05, 1.0, 1.05, 0.4, 80, 1);
 	glPopMatrix();
 }
 

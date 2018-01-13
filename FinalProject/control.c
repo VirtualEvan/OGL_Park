@@ -12,7 +12,6 @@
 #include "control.h"
 #include "glig.h"
 #include "light.h"
-#include "material.h"
 #include "model.h"
 
 /******************************************************************************************/
@@ -268,7 +267,7 @@ int main(int numArgumentos, char ** listaArgumentos)
 	initTextureWithIndex("concrete.tga", 6);
 	initTextureWithIndex("wood.tga", 7);
 	initTextureWithIndex("metal.tga", 8);
-	initTextureWithIndex("concrete.tga", 9);
+	initTextureWithIndex("water.tga", 9);
 
 	/* Creo la display list de la escena */
 	InitScene();

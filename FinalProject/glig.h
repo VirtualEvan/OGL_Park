@@ -37,9 +37,7 @@ void igWireSemiSphere(int pu, int pv); /* s1 y s2 a 1, uMax= 1, vMax= 0.5 */
 
 void igWireCone(int pu, int pv);
 
-void igWireCubo(int pu, int pv);
-
-void igWireCube(void);
+void igWireCube(int pu, int pv);
 
 
 void igCreateSolidQuadricObject(int pu, int pv, float uMax, float vMax, float R, float s1, float s2);
@@ -67,6 +65,10 @@ float nxSuperQuadric(float u, float v, float R, float s1, float s2);
 float nySuperQuadric(float u, float v, float R, float s1, float s2);
 
 float nzSuperQuadric(float u, float v, float R, float s1, float s2);
+
+void Cylinder(float inner, float outter, float height, int slices);
+
+void Ring(float inner1, float outter1, float inner2, float outter2, float height, int slices, float closed);
 
 void CreateField();
 

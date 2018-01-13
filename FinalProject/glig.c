@@ -274,7 +274,7 @@ void igSolidDado(int pu, int pv)
 }
 void igSolidSemiSphere(int pu, int pv)
 {
-	igCreateSolidQuadricObject(pu, pv, 1.0, 0.5, 1.0, 0.5, 0.5);
+	igCreateSolidQuadricObject(pu, pv, 1.0, 0.5, 1.0, 1.0, 0.5);
 }
 void igSolidCone(int pu, int pv) {
 	igCreateSolidQuadricObject(pu, pv, 1.0, 0.5, 1.0, 2.0, 1.0);
@@ -414,6 +414,69 @@ void igSolidCube()
 	glTexCoord2d(0, 1);
 	glVertex3fv(p0);
 	glEnd();
+}
+
+void Cylinder(float rad1, float rad2, float height, int slices) {
+	GLUquadricObj *quad; // Create pointer for our cylinder
+
+	quad = gluNewQuadric(); // Create our new quadric object
+	gluQuadricDrawStyle(quad, GLU_FILL); //FILL also can be line(wire)
+	gluQuadricNormals(quad, GLU_SMOOTH); // For if lighting is to be used.
+	gluQuadricOrientation(quad, GLU_INSIDE);
+	gluQuadricTexture(quad, GL_TRUE);// if you want to map a texture to it.
+
+	glRotatef(90, 1.0, 0.0, 0.0);
+	// Draw 
+	glPushMatrix();
+		gluCylinder(quad, rad1, rad2, height, slices, 1);
+	glPopMatrix();
+
+	// Faces
+	glPushMatrix();
+		glTranslatef(0.0, 0.0, height);
+		gluDisk(quad, 0.0, rad2, slices, 1);
+	glPopMatrix();
+
+	glPushMatrix();
+		glRotatef(180, 0.0, 1.0, 0.0);
+		gluDisk(quad, 0.0, rad1, slices, 1);
+	glPopMatrix();
+
+	gluDeleteQuadric(quad);
+}
+
+void Ring(float inner1, float outter1, float inner2, float outter2, float height, int slices, float closed) {
+	GLUquadricObj *quad; // Create pointer for our cylinder
+
+	quad = gluNewQuadric(); // Create our new quadric object
+	gluQuadricDrawStyle(quad, GLU_FILL); //FILL also can be line(wire)
+	gluQuadricNormals(quad, GLU_SMOOTH); // For if lighting is to be used.
+	gluQuadricOrientation(quad, GLU_INSIDE);
+	gluQuadricTexture(quad, GL_TRUE);// if you want to map a texture to it.
+
+	// Draw 
+	glRotatef(90, 1.0, 0.0, 0.0);
+	// Side 1
+	glPushMatrix();
+		gluCylinder(quad, outter1, outter2, height, slices, 1);
+
+		glTranslatef(0.0, 0.0, height);
+		if (closed) {
+			gluDisk(quad, 0.0, outter2, slices, 1);
+		}
+		else {
+			gluDisk(quad, inner2, outter2, slices, 1);
+		}
+	glPopMatrix();
+
+	//Side 2
+	gluQuadricOrientation(quad, GLU_OUTSIDE);
+	glPushMatrix();
+		gluCylinder(quad, inner1, inner2, height, slices, 1);
+
+		gluDisk(quad, inner1, outter1, slices, 1);
+	glPopMatrix();
+	gluDeleteQuadric(quad);
 }
 
 
