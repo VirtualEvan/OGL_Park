@@ -28,7 +28,18 @@ void Fountain(void);
 
 void Tile(int texture);
 
-void Floor(void);
+
+void Sky(int size);
+
+void Grass(int texture);
+
+void setFloor(float size);
+void setBenches(void);
+void setLights(void);
+void setTrees(void);
+void setLTrees(void);
+void setPTrees(void);
+void setFountain(void);
 
 void Test(void);
 

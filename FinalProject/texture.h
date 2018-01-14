@@ -25,7 +25,7 @@ GLubyte texturaInfo[anchoTextura][altoTextura][3];
 // 9.........TODO 09: USE SEVERAL TEXTURES IN THE SCENE ......................9
 
 // 9.1........ WE'LL USE TWO TEXTURES ...................9.1
-#define numTextures 10
+#define numTextures 12
 
 // 9.2......... WE'LL USE REFERENCES TO THOSE TWO TEXTURES IN ORDER TO APPLY THEM TO THE OBJECTS IN THE SCENE .......9.2
 GLuint textIds[numTextures];

@@ -274,7 +274,7 @@ void igSolidDado(int pu, int pv)
 }
 void igSolidSemiSphere(int pu, int pv)
 {
-	igCreateSolidQuadricObject(pu, pv, 1.0, 0.5, 1.0, 1.0, 0.5);
+	igCreateSolidQuadricObject(pu, pv, 1.0, 0.5, 1.0, 1.0, 1.0);
 }
 void igSolidCone(int pu, int pv) {
 	igCreateSolidQuadricObject(pu, pv, 1.0, 0.5, 1.0, 2.0, 1.0);
@@ -351,68 +351,68 @@ void igSolidCube()
 	glBegin(GL_QUADS);
 	glNormal3f(0.f, 0.f, -1.f);
 	glTexCoord2d(0, 0);
-	glVertex3fv(p0);
-	glTexCoord2d(1, 0);
-	glVertex3fv(p1);
-	glTexCoord2d(1, 1);
-	glVertex3fv(p2);
-	glTexCoord2d(0, 1);
 	glVertex3fv(p3);
+	glTexCoord2d(1, 0);
+	glVertex3fv(p2);
+	glTexCoord2d(1, 1);
+	glVertex3fv(p1);
+	glTexCoord2d(0, 1);
+	glVertex3fv(p0);
 
 	//DERECHA
 	glNormal3f(1.f, 0.f, 0.f);
 	glTexCoord2d(0, 0);
-	glVertex3fv(p3);
-	glTexCoord2d(1, 0);
-	glVertex3fv(p2);
-	glTexCoord2d(1, 1);
-	glVertex3fv(p6);
-	glTexCoord2d(0, 1);
 	glVertex3fv(p7);
+	glTexCoord2d(1, 0);
+	glVertex3fv(p6);
+	glTexCoord2d(1, 1);
+	glVertex3fv(p2);
+	glTexCoord2d(0, 1);
+	glVertex3fv(p3);
 
 	//IZQUIERDA
 	glNormal3f(-1.f, 0.f, 0.f);
 	glTexCoord2d(0, 0);
-	glVertex3fv(p4);
-	glTexCoord2d(1, 0);
-	glVertex3fv(p5);
-	glTexCoord2d(1, 1);
-	glVertex3fv(p1);
-	glTexCoord2d(0, 1);
 	glVertex3fv(p0);
+	glTexCoord2d(1, 0);
+	glVertex3fv(p1);
+	glTexCoord2d(1, 1);
+	glVertex3fv(p5);
+	glTexCoord2d(0, 1);
+	glVertex3fv(p4);
 
 	//FRONTAL
 	glNormal3f(0.f, 0.f, 1.f);
 	glTexCoord2d(0, 0);
-	glVertex3fv(p7);
-	glTexCoord2d(1, 0);
-	glVertex3fv(p6);
-	glTexCoord2d(1, 1);
-	glVertex3fv(p5);
-	glTexCoord2d(0, 1);
 	glVertex3fv(p4);
+	glTexCoord2d(1, 0);
+	glVertex3fv(p5);
+	glTexCoord2d(1, 1);
+	glVertex3fv(p6);
+	glTexCoord2d(0, 1);
+	glVertex3fv(p7);
 
 	//TOP
 	glNormal3f(0.f, 1.f, 0.f);
 	glTexCoord2d(0, 0);
-	glVertex3fv(p1);
-	glTexCoord2d(1, 0);
-	glVertex3fv(p5);
-	glTexCoord2d(1, 1);
-	glVertex3fv(p6);
-	glTexCoord2d(0, 1);
 	glVertex3fv(p2);
+	glTexCoord2d(1, 0);
+	glVertex3fv(p6);
+	glTexCoord2d(1, 1);
+	glVertex3fv(p5);
+	glTexCoord2d(0, 1);
+	glVertex3fv(p1);
 
 	//BOTTOM
 	glNormal3f(0.f, -1.f, 0.f);
 	glTexCoord2d(0, 0);
-	glVertex3fv(p3);
-	glTexCoord2d(1, 0);
-	glVertex3fv(p7);
-	glTexCoord2d(1, 1);
-	glVertex3fv(p4);
-	glTexCoord2d(0, 1);
 	glVertex3fv(p0);
+	glTexCoord2d(1, 0);
+	glVertex3fv(p4);
+	glTexCoord2d(1, 1);
+	glVertex3fv(p7);
+	glTexCoord2d(0, 1);
+	glVertex3fv(p3);
 	glEnd();
 }
 

@@ -1,3 +1,3 @@
 ﻿  model.c
-d:\esei\master\celso\ogl_park\finalproject\model.c(43): warning C4013: 'applyTexture' undefined; assuming extern returning int
+d:\esei\master\celso\ogl_park\finalproject\model.c(102): warning C4013: 'applyTexture' undefined; assuming extern returning int
   FinalProject.vcxproj -> D:\ESEI\Master\Celso\OGL_Park\Debug\FinalProject.exe

@@ -268,6 +268,8 @@ int main(int numArgumentos, char ** listaArgumentos)
 	initTextureWithIndex("wood.tga", 7);
 	initTextureWithIndex("metal.tga", 8);
 	initTextureWithIndex("water.tga", 9);
+	initTextureWithIndex("sky.tga", 10);
+	initTextureWithIndex("purple.tga", 11);
 
 	/* Creo la display list de la escena */
 	InitScene();

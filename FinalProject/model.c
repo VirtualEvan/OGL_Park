@@ -11,6 +11,7 @@
 #include "glig.h"
 #include "model.h"
 
+#define SIZE 75
 
 /******************** SCENE *************************/
 
@@ -22,11 +23,255 @@ void InitScene(void)
 	{
 		glNewList(scene, GL_COMPILE);
 
-		LongTree();
-		
+		setPTrees();
+		setLTrees();
+		setTrees();
+		setLights();
+		setBenches();
+		setFountain();
+		setFloor(SIZE);
+		Sky(SIZE);
 
 		glEndList();
 	}
+}
+
+
+void setFloor(float size) {
+	float i, j;
+	
+	// Back
+	glPushMatrix();
+		glTranslatef(0.0, 0.0, 8.2);
+		for (i = 0; i <= size; i += 1.55) {
+			glPushMatrix();
+			glTranslatef(0.0, 0.03, i);
+			Tile(1);
+			glPopMatrix();
+		}
+	glPopMatrix();
+
+	// Front
+	glPushMatrix();
+		glTranslatef(0.0, 0.0, -8.2);
+		for (i = 0; i >= -size; i -= 1.55) {
+			glPushMatrix();
+			glTranslatef(0.0, 0.03, i);
+			Tile(1);
+			glPopMatrix();
+		}	
+	glPopMatrix();
+
+	// Right
+	glPushMatrix();
+		glRotatef(90, 0.0, 1.0, 0.0);
+		glTranslatef(0.0, 0.0, 8.2);
+		for (i = 0; i <= size; i += 1.55) {
+			glPushMatrix();
+			glTranslatef(0.0, 0.03, i);
+			Tile(1);
+			glPopMatrix();
+		}
+	glPopMatrix();
+
+	// Left
+	glPushMatrix();
+		glRotatef(90, 0.0, 1.0, 0.0);
+		glTranslatef(0.0, 0.0, -8.2);
+		for (i = 0; i >= -size; i -= 1.55) {
+			glPushMatrix();
+			glTranslatef(0.0, 0.03, i);
+			Tile(1);
+			glPopMatrix();
+		}
+	glPopMatrix();
+
+
+	// Grass
+	for (i = -size; i <= size; i++) {
+		for (j = -size; j <= size; j++) {
+			glPushMatrix();
+			glTranslatef(i, 0.0, j);
+			Grass(0);
+			glPopMatrix();
+		}
+	}
+
+	// Center
+	glPushMatrix();
+		applyTexture(1);
+		glTranslatef(0.0, 0.03, 0.0);
+		glRotatef(22.5, 0.0, 1.0, 0.0);
+		Cylinder(8.0, 8.0, 0.03, 8);
+	glPopMatrix();
+}
+
+void setFountain() {
+	glPushMatrix();
+		glTranslatef(0.0, 0.92, 0.0);
+		Fountain();
+	glPopMatrix();
+}
+
+void setBenches() {
+
+	// Paths
+	glPushMatrix();
+		for (float i = 0; i <= 3; i++) {
+			glRotatef(90, 0.0, 1.0, 0.0);
+			glPushMatrix();
+				glTranslatef(-15.0, 0.0, 0.0);
+				for (int i = 0; i <= 3; i++) {
+					glPushMatrix();
+						if (i % 2 == 0) {
+							glPushMatrix();
+							glTranslatef(i*-15.0, 0.52, -2.7);
+							Bench();
+							glPopMatrix();
+						}
+						else {
+							glPushMatrix();
+							glTranslatef(i*-15.0, 0.52, 2.7);
+							glRotatef(180, 0.0, 1.0, 0.0);
+							Bench();
+							glPopMatrix();
+						}
+					glPopMatrix();
+				}
+			glPopMatrix();
+		}
+	glPopMatrix();
+	
+	// Center
+	glPushMatrix();
+	for (float i = 0; i <= 3; i++) {
+		glRotatef(90, 0.0, 1.0, 0.0);
+		glPushMatrix();
+			glRotatef(45, 0.0, 1.0, 0.0);
+			glTranslatef(0.0, 0.52, -8.0);
+			Bench();
+		glPopMatrix();
+	}
+	glPopMatrix();
+}
+
+
+void setLights() {
+
+	// Paths
+	glPushMatrix();
+		for (float i = 0; i <= 3; i++) {
+			glRotatef(90, 0.0, 1.0, 0.0);
+			glPushMatrix();
+				glTranslatef(0.0, 0.0, 7.5);
+				for (int i = 0; i <= 3; i++) {
+					glPushMatrix();
+					if (i % 2 == 0) {
+						glPushMatrix();
+							glTranslatef(2.2, 3.15, i*15);
+							StreetLight();
+						glPopMatrix();
+					}
+					else {
+						glPushMatrix();
+							glTranslatef(-2.2, 3.15, i*15);
+							StreetLight();
+						glPopMatrix();
+					}
+					glPopMatrix();
+				}
+			glPopMatrix();
+		}
+	glPopMatrix();
+}
+
+
+void setTrees() {
+	glPushMatrix();
+		for (float i = 0; i <= 3; i++) {
+			glRotatef(90, 0.0, 1.0, 0.0);
+			glPushMatrix();
+				glTranslatef(0.0, 0.0, 19);
+				for (int i = 0; i <= 3; i++) {
+					glPushMatrix();
+					if (i % 2 == 0) {
+						glPushMatrix();
+							glTranslatef(2.4, 5.22, i * 15);
+							glScalef(3.0, 3.0, 3.0);
+							Tree();
+						glPopMatrix();
+					}
+					else {
+						glPushMatrix();
+							glTranslatef(-2.4, 5.22, i * 15);
+							glScalef(3.0, 3.0, 3.0);
+							Tree();
+						glPopMatrix();
+					}
+					glPopMatrix();
+				}
+			glPopMatrix();
+		}
+	glPopMatrix();
+}
+
+void setLTrees() {
+	glPushMatrix();
+		for (float i = 0; i <= 3; i++) {
+			glRotatef(90, 0.0, 1.0, 0.0);
+			glPushMatrix();
+				glPushMatrix();
+					glTranslatef(45.0, 5.45, 40.0);
+					glScalef(5.0, 5.0, 5.0);
+					LongTree();
+				glPopMatrix();
+				glPushMatrix();
+					glTranslatef(16.0, 5.45, 37.0);
+					glScalef(5.0, 5.0, 5.0);
+					LongTree();
+				glPopMatrix();
+				glPushMatrix();
+					glTranslatef(25.0, 5.45, 15.0);
+					glScalef(5.0, 5.0, 5.0);
+				LongTree();
+				glPopMatrix();
+			glPopMatrix();
+		}
+	glPopMatrix();
+}
+
+void setPTrees() {
+	glPushMatrix();
+		for (float i = 0; i <= 3; i++) {
+			glRotatef(90, 0.0, 1.0, 0.0);
+			glPushMatrix();
+				glPushMatrix();
+					glTranslatef(15.0, 3.15, 60.0);
+					glScalef(7.0, 7.0, 7.0);
+					PineTree();
+				glPopMatrix();
+				glPushMatrix();
+					glTranslatef(55.0, 3.15, 12.0);
+					glScalef(7.0, 7.0, 7.0);
+					PineTree();
+				glPopMatrix();
+				glPushMatrix();
+					glTranslatef(32.0, 2.25, 32.0);
+					glScalef(5.0, 5.0, 5.0);
+					PineTree();
+				glPopMatrix();
+			glPopMatrix();
+		}
+	glPopMatrix();
+}
+
+
+void Sky(int size) {
+	glPushMatrix();
+		applyTexture(10);
+		glRotatef(90, 1.0, 0.0, 0.0);
+		Sphere(size, 80, 0);
+	glPopMatrix();
 }
 
 /********************* MODELS ****************/
@@ -47,49 +292,42 @@ void Test() {
 }
 
 
-void Floor() {
-	applyTexture(1);
-
-	GLUquadric* quad = gluNewQuadric();
-	gluQuadricDrawStyle(quad, GLU_FILL); //FILL also can be line(wire)
-	gluQuadricNormals(quad, GLU_SMOOTH); // For if lighting is to be used.
-	gluQuadricOrientation(quad, GLU_INSIDE);
-	gluQuadricTexture(quad, GL_TRUE);// if you want to map a texture to it.
-
-	gluDisk(quad,0,2,80,80);
-	gluDeleteQuadric(quad);
+void Grass(int texture) {
+	applyTexture(texture);
+	glPushMatrix();
+		glBegin(GL_QUADS);
+		glNormal3f(0.f, 0.f, 1.f);
+		glTexCoord2d(0, 0);
+		glVertex3f(-0.5f, 0.f, -0.5f);
+		glTexCoord2d(-1, 0);
+		glVertex3f(0.5f, 0.f, -0.5f);
+		glTexCoord2d(-1, -1);
+		glVertex3f(0.5f, 0.f, 0.5f);
+		glTexCoord2d(0, -1);
+		glVertex3f(-0.5f, 0.f, 0.5f);
+		glEnd();
+	glPopMatrix();
 }
-
 
 void Tile(int texture) {
 	applyTexture(texture);
-	glBegin(GL_QUADS);
-		glNormal3f(0.f, 0.f, 1.f);
-		glTexCoord2d(0, 0);
-		glVertex3f(-0.5f, -0.5f, -0.5f);
-		glTexCoord2d(-1, 0);
-		glVertex3f(0.5f, -0.5f, -0.5f);
-		glTexCoord2d(-1, -1);
-		glVertex3f(0.5f, -0.5f, 0.5f);
-		glTexCoord2d(0, -1);
-		glVertex3f(-0.5f, -0.5f, 0.5f);
-	glEnd();
+	glPushMatrix();
+		glScalef(4.0, 0.03, 1.5);
+		igSolidCube();
+	glPopMatrix();
 }
 
 
 
 void Fountain() {
-	applyTexture(1);
-
-	glScalef(0.5, 0.5, 0.5);
-
+	applyTexture(11);
 	glPushMatrix();
-		glTranslatef(0.0, 1.75, 0.0);
+		glTranslatef(0.0, 1.71, 0.0);
 		Ring(0.01, 0.03, 0.03, 0.05, 0.1, 80, 0);
 	glPopMatrix();
 
 	glPushMatrix();
-		glTranslatef(0.0, 1.45, 0.0);
+		glTranslatef(0.0, 1.42, 0.0);
 		glScalef(0.2, 0.2, 0.2);
 		igSolidSemiSphere(80, 80);
 	glPopMatrix();
@@ -101,7 +339,7 @@ void Fountain() {
 		Cylinder(0.585, 0.585, 0.25, 80);
 	glPopMatrix();
 
-	applyTexture(6);
+	applyTexture(11);
 	glPushMatrix();
 		glTranslatef(0.0, 1.42, 0.0);
 		glScalef(3.0, 1.0, 3.0);
@@ -147,7 +385,7 @@ void Fountain() {
 		Cylinder(1.0, 1.0, 0.4, 80);
 	glPopMatrix();
 
-	applyTexture(6);
+	applyTexture(11);
 	glPushMatrix();
 		glTranslatef(0.0, -0.5, 0.0);
 		glScalef(3.0, 1.0, 3.0);
@@ -290,26 +528,21 @@ void PineTree()
 
 		glTranslatef(0.0, 0.5, 0.0);
 		glScalef(0.8, 1, 0.8);
-		//igSolidCone(80, 80);
 		Cylinder(0.0, 0.9, 1.3, 80);
 
 		glTranslatef(0.0, 0.5, 0.0);
 		glScalef(0.8, 1, 0.8);
-		//igSolidCone(80, 80);
 		Cylinder(0.0, 0.9, 1.3, 80);
 
 		glTranslatef(0.0, 0.5, 0.0);
 		glScalef(0.8, 1, 0.8);
-		//igSolidCone(80, 80);
 		Cylinder(0.0, 0.9, 1.3, 80);
 
 		glTranslatef(0.0, 0.5, 0.0);
 		glScalef(0.8, 1, 0.8);
-		//igSolidCone(80, 80);
 		Cylinder(0.0, 0.9, 1.3, 80);
 
 		glScalef(0.6, 1, 0.6);
-		//igSolidCone(80, 80);
 		Cylinder(0.0, 0.9, 1.3, 80);
 	glPopMatrix();
 
@@ -317,7 +550,7 @@ void PineTree()
 	applyTexture(4);
 	glPushMatrix();
 		glScalef(0.08, 0.3, 0.08);
-		Cylinder(1.0, 1.0, 2.5, 80);
+		Cylinder(1.0, 1.0, 1.5, 80);
 	glPopMatrix();
 
 }
@@ -327,7 +560,7 @@ void LongTree() {
 	//Hojas
 	glPushMatrix();
 		glTranslatef(0.0, 0.53, 0.0);
-		glScalef(0.5, 1.3, 0.5);
+		glScalef(0.7, 1.3, 0.7);
 		glRotatef(90, 1.0, 0.0, 0.0);
 		Sphere(0.8, 80, 1);
 	glPopMatrix();
