@@ -371,7 +371,7 @@ void StreetLight (void)
 		Cylinder(1.0, 1.0, 3.0, 80);
 	glPopMatrix();
 
-
+	applyTexture(13);
 	glPushMatrix();
 		glTranslatef(0.0, 1.6, 0.0);
 		glScalef(0.25, 0.4, 0.25);
@@ -488,7 +488,7 @@ void Bench(void)
 void PineTree()
 {
 	// Hojas
-	applyTexture(5);
+	applyTexture(12);
 	glPushMatrix();
 		glTranslatef(0.0, 1.04, 0.0);
 		glScalef(0.8, 0.8, 0.8);
@@ -525,7 +525,7 @@ void PineTree()
 }
 
 void LongTree() {
-	applyTexture(5);
+	applyTexture(6);
 	//Hojas
 	glPushMatrix();
 		glTranslatef(0.0, 0.53, 0.0);

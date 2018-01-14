@@ -15,7 +15,7 @@ void Light0 (void);
 void Light1 (void);
 
 /* Define y activa la luz 1 */
-void Luz2 (void);
+void Light2 (void);
 
 /* Define y activa la niebla */
 void Niebla (void);

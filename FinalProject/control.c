@@ -79,8 +79,19 @@ void Keyboard(unsigned char tecla, int x, int y)
 		modo = FLY;
 		printf("Modo = FLY      \r");
 		break;
+
+	case 'd': /* Pulsacion cursor izquierda del teclado ampliado */
+		glDisable(GL_LIGHTING);
+		glutPostRedisplay();
+	break;
+
+	case 'n': /* Pulsacion cursor izquierda del teclado ampliado */
+		glEnable(GL_LIGHTING);
+		glutPostRedisplay();
+		break;
 	}
 }
+
 
 
 /******************************************************************************************/
@@ -247,7 +258,7 @@ int main(int numArgumentos, char ** listaArgumentos)
 	/* Creación de la ventana de la aplicación */
 	CreateWindow(numArgumentos, listaArgumentos);
 
-	//LightsInit();
+	LightsInit();
 
 
 	/* Llamada a las funciones de inicializacion */
@@ -264,12 +275,14 @@ int main(int numArgumentos, char ** listaArgumentos)
 	initTextureWithIndex("tree2.tga", 3);
 	initTextureWithIndex("pine.tga", 4);
 	initTextureWithIndex("leaf1.tga", 5);
-	initTextureWithIndex("concrete.tga", 6);
+	initTextureWithIndex("leaf2.tga", 6);
 	initTextureWithIndex("wood.tga", 7);
-	initTextureWithIndex("metal.tga", 8);
+	initTextureWithIndex("metal1.tga", 8);
 	initTextureWithIndex("water.tga", 9);
 	initTextureWithIndex("sky.tga", 10);
 	initTextureWithIndex("purple.tga", 11);
+	initTextureWithIndex("leaf3.tga", 12);
+	initTextureWithIndex("glass.tga", 13);
 
 	/* Creo la display list de la escena */
 	InitScene();
