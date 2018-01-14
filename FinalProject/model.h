@@ -8,8 +8,15 @@
 #ifndef MODELADO_H
 #define MODELADO_H
 
+#define SIZE 75
+
 /* Identificador para la display list de la escena */
 GLuint scene;
+GLuint trees;
+GLuint benches;
+GLuint stlights;
+GLuint fountain;
+
 
 /* Crea la display list para la escena */
 void InitScene (void);

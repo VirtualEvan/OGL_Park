@@ -277,7 +277,7 @@ int main(int numArgumentos, char ** listaArgumentos)
 	initTextureWithIndex("leaf1.tga", 5);
 	initTextureWithIndex("leaf2.tga", 6);
 	initTextureWithIndex("wood.tga", 7);
-	initTextureWithIndex("metal1.tga", 8);
+	initTextureWithIndex("metal.tga", 8);
 	initTextureWithIndex("water.tga", 9);
 	initTextureWithIndex("sky.tga", 10);
 	initTextureWithIndex("purple.tga", 11);

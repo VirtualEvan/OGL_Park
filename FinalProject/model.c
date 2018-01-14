@@ -11,7 +11,6 @@
 #include "glig.h"
 #include "model.h"
 
-#define SIZE 75
 
 /******************** SCENE *************************/
 
