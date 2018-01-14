@@ -40,52 +40,21 @@ void InitScene(void)
 void setFloor(float size) {
 	float i, j;
 	
-	// Back
+	// Tiles
 	glPushMatrix();
-		glTranslatef(0.0, 0.0, 8.2);
-		for (i = 0; i <= size; i += 1.55) {
+		for (float i = 0; i <= 3; i++) {
+			glRotatef(90, 0.0, 1.0, 0.0);
 			glPushMatrix();
-			glTranslatef(0.0, 0.03, i);
-			Tile(1);
+				glTranslatef(0.0, 0.0, 8.2);
+				for (j = 0; j <= size-8.2; j += 1.55) {
+					glPushMatrix();
+					glTranslatef(0.0, 0.03, j);
+					Tile(1);
+					glPopMatrix();
+				}
 			glPopMatrix();
 		}
 	glPopMatrix();
-
-	// Front
-	glPushMatrix();
-		glTranslatef(0.0, 0.0, -8.2);
-		for (i = 0; i >= -size; i -= 1.55) {
-			glPushMatrix();
-			glTranslatef(0.0, 0.03, i);
-			Tile(1);
-			glPopMatrix();
-		}	
-	glPopMatrix();
-
-	// Right
-	glPushMatrix();
-		glRotatef(90, 0.0, 1.0, 0.0);
-		glTranslatef(0.0, 0.0, 8.2);
-		for (i = 0; i <= size; i += 1.55) {
-			glPushMatrix();
-			glTranslatef(0.0, 0.03, i);
-			Tile(1);
-			glPopMatrix();
-		}
-	glPopMatrix();
-
-	// Left
-	glPushMatrix();
-		glRotatef(90, 0.0, 1.0, 0.0);
-		glTranslatef(0.0, 0.0, -8.2);
-		for (i = 0; i >= -size; i -= 1.55) {
-			glPushMatrix();
-			glTranslatef(0.0, 0.03, i);
-			Tile(1);
-			glPopMatrix();
-		}
-	glPopMatrix();
-
 
 	// Grass
 	for (i = -size; i <= size; i++) {

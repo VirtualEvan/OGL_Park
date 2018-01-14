@@ -10,7 +10,7 @@
 
 /* Funcion de conversion de grados a radianes */
 #define  grad2rad(x)  ((float) (3.14159 * x) / 180.0)
-#define PASO 0.1 /* Definicion del paso para el movimiento del observador */
+#define PASO 1.1 /* Definicion del paso para el movimiento del observador */
 
 #define WALK 1
 #define EXAMINAR 2
